@@ -12,19 +12,22 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
-    
+    private var isFinishedTypingNumber: Bool = true
     
     @IBAction func calcButtonPressed(_ sender: UIButton) {
-        
-        //What should happen when a non-number button is pressed
-    
+        isFinishedTypingNumber = true
     }
 
     
     @IBAction func numButtonPressed(_ sender: UIButton) {
+        guard let numValue = sender.currentTitle else { return }
         
-        //What should happen when a number is entered into the keypad
-    
+        if isFinishedTypingNumber {
+            displayLabel.text = numValue
+            isFinishedTypingNumber = false
+        } else {
+            displayLabel.text! += numValue
+        }
     }
 
 }
